@@ -199,17 +199,8 @@ if (process.env.CF_AI_GATEWAY_MODEL) {
     }
 
     if (baseUrl && apiKey) {
-        //commented out below line on 20260308
-        //const api = gwProvider === 'anthropic' ? 'anthropic-messages' : 'openai-completions';
-        // Workers AI via AI Gateway behaves better with the Responses API surface;
-        // using chat/completions can leak raw function-call JSON in some models.
-                let api = 'openai-completions';
-        if (gwProvider === 'anthropic') {
-            api = 'anthropic-messages';
-        } else if (gwProvider === 'workers-ai') {
-            api = 'openai-responses';
-        }
-        // added the above lines
+       const api = gwProvider === 'anthropic' ? 'anthropic-messages' : 'openai-completions';
+
         
         const providerName = 'cf-ai-gw-' + gwProvider;
 
